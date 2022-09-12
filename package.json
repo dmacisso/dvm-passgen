@@ -1,0 +1,63 @@
+{
+  "name": "dvm-passgen-app",
+  "version": "1.0.0",
+  "description": "password generator desktop app",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test speci\fied\" && exit 1",
+    "start": "electron-forge start",
+    "watch": "nodemon --exec electron .",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dmacisso/dvm-passgen-app",
+    "homepage": "https://github.com/dmacisso/dmacisso"
+  },
+  "keywords": [
+    "Electron",
+    "Password Generator"
+  ],
+  "author": "DVMacisso",
+  "license": "ISC",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.66",
+    "@electron-forge/maker-deb": "^6.0.0-beta.66",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.66",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.66",
+    "@electron-forge/maker-zip": "^6.0.0-beta.66",
+    "electron": "^20.1.3",
+    "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "dvm_passgen_app"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
+}
