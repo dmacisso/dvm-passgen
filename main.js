@@ -1,5 +1,5 @@
 // Modules
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 
 // include the Node.js 'path' module
 const path = require('path');
@@ -17,6 +17,7 @@ const createWindow = () => {
       preload: path.join(__dirname, 'preload.js'),
     },
   });
+  ipcMain.handle('ping', () => 'pong');
 
   win.loadFile('renderer/main.html');
 };
@@ -24,6 +25,13 @@ const createWindow = () => {
 // Electron `app` is ready
 app.whenReady().then(() => {
   createWindow();
+
+  // for macOS
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+    }
+  });
 });
 
 // Quit when all windows are closed - (Not macOS - Darwin)
