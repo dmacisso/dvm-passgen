@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url(./IMG_3877.JPG);
+  background-size: cover;
+  font-family: sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+h1 {
+  margin-top: 1rem;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-control {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 4rem;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(103, 161, 10, 0.6);
+  width: 60%;
+  max-width: 600px;
+  border-radius: 20px;
+  color: #000;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+input,
+textarea {
+  margin: 0.2rem 0;
+}
+
+#button {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+button#submit-button {
+  margin-right: 4rem;
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  width: 100%;
+  cursor: pointer;
+  background: gray;
+  border: 1px solid rgb(70, 69, 69);
+  border-radius: 5px;
+  color: white;
+}
+
+button#submit-button:hover,
+button#submit-button:focus {
+  background: rgb(70, 69, 69);
+  border: 1px solid gray;
+  color: pink;
+}
+button#clear {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  width: 100%;
+  cursor: pointer;
+  background: gray;
+  border: 1px solid rgb(70, 69, 69);
+  border-radius: 5px;
+  color: white;
+}
+
+button#clear:hover,
+button#clear-button:focus {
+  background: rgb(70, 69, 69);
+  border: 1px solid gray;
+  color: pink;
+}
+
+footer {
+  color: #fff;
+  position: absolute;
+  bottom: 1rem;
+  left: 0.5rem;
+}

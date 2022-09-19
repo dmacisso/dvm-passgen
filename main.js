@@ -1,5 +1,6 @@
 // Modules
 const { app, BrowserWindow, ipcMain } = require('electron');
+const windowStateKeeper = require('electron-window-state');
 
 // include the Node.js 'path' module
 const path = require('path');
@@ -10,20 +11,44 @@ let win;
 
 // Create a new BrowserWindow when `app` is ready
 const createWindow = () => {
-  const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+  // win state keeper
+  let state = windowStateKeeper({ defaultWidth: 600, defaultHeight: 500 });
+  win = new BrowserWindow({
+    x: 0,
+    y: 0,
+    width: state.width,
+    height: state.height,
+    minWidth: 350,
+    maxWidth: 650,
+    minHeight: 300,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: false,
+      nodeIntegration: true,
+      // preload: path.join(__dirname, 'preload.js')
     },
   });
-  ipcMain.handle('ping', () => 'pong');
+  // ipcMain.handle('ping', () => 'pong');
 
+  // Create main app Menu
+  // appMenu(win.webContents);
+
+  // Load index.html into the new BrowserWindow
   win.loadFile('renderer/main.html');
+
+  // Open DevTools - Remove for PRODUCTION!
+  // win.webContents.openDevTools({ mode: 'detach' });
+
+  // Manage new window state
+  state.manage(win);
 };
 
 // Electron `app` is ready
 app.whenReady().then(() => {
+  console.log(app.getPath('desktop'));
+  console.log(app.getPath('music'));
+  console.log(app.getPath('temp'));
+  console.log(app.getPath('userData'));
+
   createWindow();
 
   // for macOS

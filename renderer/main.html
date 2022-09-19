@@ -7,13 +7,55 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
     />
-    <title>dvm-passgen</title>
+    <link rel="stylesheet" href="main.css" />
+    <title>Password Generator</title>
   </head>
-  
-  <body>
-    <h1>Password Generator</h1>
-    <p id="info"></p>
 
-    <script src="./app.js"></script>
+  <body>
+    <header>
+      <h1>Password Generator</h1>
+    </header>
+    <main>
+      <div class="form-control">
+        <form action="">
+          <div>
+            <label for="len">Password Length</label>
+            <input type="number" name="len" placeholder="8" id="len" />
+          </div>
+          <div>
+            <label for="mumbers">Include Numbers?</label>
+            <input type="checkbox" name="numbers" id="numbers" />
+          </div>
+          <div>
+            <label for="symbols">Include Symbols?</label>
+            <input type="checkbox" name="symbols" id="symbols" />
+          </div>
+          <div>
+            <label for="clipboard">Save to Clipboard and File?</label>
+            <input type="checkbox" name="clipboard" id="clipboard" />
+          </div>
+          <div class="text-area">
+            <textarea
+              name="password"
+              id="password"
+              cols="40"
+              rows="2"
+              placeholder="Generated password appears here"
+            ></textarea
+            ><br />
+            <!-- <label for="password">Generate Password</label> -->
+          </div>
+          <div id="button">
+            <button id="submit-button" type="submit">Generate Password</button>
+            <!-- <button id="clear" onclick="clearData()" type="button">Clear Data</button> -->
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer>
+      <p id="info"></p>
+    </footer>
+
+    <script type="module" src="app.js"></script>
   </body>
 </html>
