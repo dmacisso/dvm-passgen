@@ -4,6 +4,7 @@ const windowStateKeeper = require('electron-window-state');
 
 // include the Node.js 'path' module
 const path = require('path');
+const { send } = require('process');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -44,10 +45,10 @@ const createWindow = () => {
 
 // Electron `app` is ready
 app.whenReady().then(() => {
-  console.log(app.getPath('desktop'));
-  console.log(app.getPath('music'));
-  console.log(app.getPath('temp'));
-  console.log(app.getPath('userData'));
+  // console.log(app.getPath('desktop'));
+  // console.log(app.getPath('music'));
+  // console.log(app.getPath('temp'));
+  // console.log(app.getPath('userData'));
 
   createWindow();
 
@@ -58,6 +59,13 @@ app.whenReady().then(() => {
     }
   });
 });
+
+console.log(app.getPath('desktop'));
+
+// let desk = app.getPath('desktop');
+// ipcMain.handle('desktop', (desk) => {
+//   send(desk);
+// });
 
 // Quit when all windows are closed - (Not macOS - Darwin)
 app.on('window-all-closed', () => {
