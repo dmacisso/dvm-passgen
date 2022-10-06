@@ -1,7 +1,7 @@
 // const createPassword = require('./utils/createPassword');
 import { createPassword } from './utils/createPassword.js';
 import { savePassword } from './utils/savePassword.js';
-const clipboardy = require('clipboardy');
+// const clipboardy = require('clipboardy');
 
 const len = document.getElementById('len'),
   pass = document.getElementById('password'),
@@ -15,25 +15,19 @@ button.addEventListener('click', (e) => {
   let length = +len.value;
   let numbers = num.checked;
   let symbols = sym.checked;
-  let clipboard = clip.checked;
-  console.log(length, numbers, symbols, clipboard);
+  // let clipboard = clip.checked;
+  console.log(length, numbers, symbols);
 
   // Get Generated Password
   const generatedPassword = createPassword(length, numbers, symbols);
+
+  ipcRenderer.send('passwd', generatedPassword);
+
   
-  
-  //* Save to File
-  if (clipboard === true) {
-    savePassword(generatedPassword);
-    //* Copy to clipboard
-    clipboardy.writeSync(generatedPassword);
-  }
-  
+
   // console.log(generatedPassword);
   pass.innerText = generatedPassword;
 });
-
-
 
 const information = document.getElementById('info');
 information.innerText = `This app is using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`;

@@ -5,8 +5,10 @@
 }
 
 body {
-  background: url(./IMG_3877.JPG);
-  background-size: cover;
+  /* background: url(./IMG_3877.JPG); */
+  background: rgb(90, 144, 199);
+  background-size: auto;
+  background-repeat: no-repeat;
   font-family: sans-serif;
 }
 

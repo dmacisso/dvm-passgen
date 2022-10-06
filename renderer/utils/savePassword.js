@@ -1,16 +1,14 @@
-const fs = require('fs');
-// import fs from 'fs';
-const path = require('path');
-// import path from 'path';
-const os = require('os');
-// import os from 'os';
+// const fs = require('fs');
+// const path = require('path');
+// const os = require('os');
 
 // const chalk = require('chalk');
+// console.log(os.homedir());
 
-let desktop = app.getPath('desktop');
+
 
 export const savePassword = (password) => {
-  fs.open(path.join(__dirname, '../', 'passwords.txt'), 'a', 666, (e, id) => {
+  fs.open(path.join(os.homedir(), 'saved-pw', 'passwords.txt'), 'a', 666, (e, id) => {
     // fs.open(path.join(desktop, 'passwords.txt'), 'a', 666, (e, id) => {
     fs.write(id, password + os.EOL, null, 'utf-8', () => {
       fs.close(id, () => {

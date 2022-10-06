@@ -1,9 +1,14 @@
+const fs = require('fs');
+const os = require('os');
+const clipboardy = require('clipboardy');
+
 // Modules
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, clipboard } = require('electron');
 const windowStateKeeper = require('electron-window-state');
 
 // include the Node.js 'path' module
 const path = require('path');
+7;
 const { send } = require('process');
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -13,7 +18,7 @@ let win;
 // Create a new BrowserWindow when `app` is ready
 const createWindow = () => {
   // win state keeper
-  let state = windowStateKeeper({ defaultWidth: 600, defaultHeight: 500 });
+  let state = windowStateKeeper({ defaultWidth: 600, defaultHeight: 600 });
   win = new BrowserWindow({
     x: 0,
     y: 0,
@@ -23,21 +28,43 @@ const createWindow = () => {
     maxWidth: 650,
     minHeight: 300,
     webPreferences: {
-      contextIsolation: false,
+      contextIsolation: true,
       nodeIntegration: true,
-      // preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
     },
   });
+
+  // Open DevTools - Remove for PRODUCTION!
+  win.webContents.openDevTools({ mode: 'detach' });
+
   // ipcMain.handle('ping', () => 'pong');
+  ipcMain.on('passwd', (e, generatedPassword) => {
+    console.log(generatedPassword);
+
+    // copy password to clipboard
+    clipboard.writeText(generatedPassword);
+    // Create destination folder if not exists
+    const dest = path.join(os.homedir(), '/generated_passwords');
+    const filename = 'password.txt';
+    if (!fs.existsSync(dest)) {
+      fs.mkdirSync(dest);
+    }
+    // save file to password.txt
+   
+    fs.open(path.join(dest, 'passwords.txt'), 'a', 666, (e, id) => {
+      fs.write(id, generatedPassword + os.EOL, null, 'utf-8', () => {
+        fs.close(id, () => {
+          console.log('Password saved to passwords.txt');
+        });
+      });
+    });
+  });
 
   // Create main app Menu
   // appMenu(win.webContents);
 
   // Load index.html into the new BrowserWindow
   win.loadFile('renderer/main.html');
-
-  // Open DevTools - Remove for PRODUCTION!
-  // win.webContents.openDevTools({ mode: 'detach' });
 
   // Manage new window state
   state.manage(win);

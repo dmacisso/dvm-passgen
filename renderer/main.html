@@ -3,10 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta
+    <!-- <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
-    />
+    /> -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
     <link rel="stylesheet" href="main.css" />
     <title>Password Generator</title>
   </head>
@@ -26,14 +27,19 @@
             <label for="mumbers">Include Numbers?</label>
             <input type="checkbox" name="numbers" id="numbers" />
           </div>
-          <div>
+          <!-- <div>
             <label for="symbols">Include Symbols?</label>
             <input type="checkbox" name="symbols" id="symbols" />
-          </div>
+          </div> -->
           <div>
+            <label for="symbols">Include Symbols</label>
+            <input type="text" name="symbols" id="symbols" />
+          </div>
+          
+          <!-- <div>
             <label for="clipboard">Save to Clipboard and File?</label>
             <input type="checkbox" name="clipboard" id="clipboard" />
-          </div>
+          </div> -->
           <div class="text-area">
             <textarea
               name="password"
