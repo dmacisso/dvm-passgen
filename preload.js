@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
-const clipboardy = require('clipboardy');
 
 // Modules
 const { contextBridge, ipcRenderer } = require('electron');

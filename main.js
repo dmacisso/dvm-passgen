@@ -1,6 +1,5 @@
 const fs = require('fs');
 const os = require('os');
-const clipboardy = require('clipboardy');
 
 // Modules
 const { app, BrowserWindow, ipcMain, clipboard } = require('electron');
@@ -18,7 +17,7 @@ let win;
 // Create a new BrowserWindow when `app` is ready
 const createWindow = () => {
   // win state keeper
-  let state = windowStateKeeper({ defaultWidth: 600, defaultHeight: 600 });
+  let state = windowStateKeeper({ defaultWidth: 400, defaultHeight: 500 });
   win = new BrowserWindow({
     x: 0,
     y: 0,
@@ -44,17 +43,18 @@ const createWindow = () => {
     // copy password to clipboard
     clipboard.writeText(generatedPassword);
     // Create destination folder if not exists
-    const dest = path.join(os.homedir(), '/generated_passwords');
+    // const dest = path.join(os.homedir(), '/generated_passwords');
+    const dest = path.join(app.getPath('home'), '/generated_passwords');
     const filename = 'password.txt';
     if (!fs.existsSync(dest)) {
       fs.mkdirSync(dest);
     }
     // save file to password.txt
-   
+
     fs.open(path.join(dest, 'passwords.txt'), 'a', 666, (e, id) => {
       fs.write(id, generatedPassword + os.EOL, null, 'utf-8', () => {
         fs.close(id, () => {
-          console.log('Password saved to passwords.txt');
+          console.log(`Password saved to ${dest}\\password.txt`);
         });
       });
     });
@@ -76,6 +76,7 @@ app.whenReady().then(() => {
   // console.log(app.getPath('music'));
   // console.log(app.getPath('temp'));
   // console.log(app.getPath('userData'));
+  // console.log(app.getPath('home'));
 
   createWindow();
 
@@ -87,7 +88,6 @@ app.whenReady().then(() => {
   });
 });
 
-console.log(app.getPath('desktop'));
 
 // let desk = app.getPath('desktop');
 // ipcMain.handle('desktop', (desk) => {

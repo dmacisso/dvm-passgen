@@ -1,9 +1,15 @@
+import { symbols } from '../app.js';
+
 const alpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const numbers = '0123456789';
 // const symbols = '!@#$%^&*_-+=';
-let symbols = ''
+// console.log('syms:', symbols);
 
-export const createPassword = (length = 8, hasNumbers = true, hasSymbols = true) => {
+export const createPassword = (
+  length = 8,
+  hasNumbers = true,
+  hasSymbols = true
+) => {
   let chars = alpha;
   hasNumbers ? (chars += numbers) : '';
   hasSymbols ? (chars += symbols) : '';
@@ -17,8 +23,6 @@ const generatePassword = (length, chars) => {
   }
   return password;
 };
-
-
 
 // module.exports = createPassword;
 // export { createPassword, generatePassword };
