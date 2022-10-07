@@ -1,6 +1,9 @@
 const fs = require('fs');
 const os = require('os');
 
+const { version, productName } = require('./package.json');
+console.log(productName, version);
+
 // Modules
 const { app, BrowserWindow, ipcMain, clipboard } = require('electron');
 const windowStateKeeper = require('electron-window-state');
@@ -9,10 +12,8 @@ const appMenu = require('./menu');
 // Booleans
 const isDev = process.env.NODE_ENV !== 'production';
 
-
 // include the Node.js 'path' module
 const path = require('path');
-7;
 const { send } = require('process');
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -38,8 +39,8 @@ const createWindow = () => {
     },
   });
 
-   // Create main app Menu
-   appMenu(win.webContents);
+  // Create main app Menu
+  appMenu(win.webContents);
 
   // Open DevTools - Remove for PRODUCTION!
   win.webContents.openDevTools({ mode: 'detach' });
@@ -95,7 +96,6 @@ app.whenReady().then(() => {
     }
   });
 });
-
 
 // let desk = app.getPath('desktop');
 // ipcMain.handle('desktop', (desk) => {

@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+const { version, productName } = require('./package.json');
 
 // Modules
 const { contextBridge, ipcRenderer } = require('electron');
@@ -9,6 +10,9 @@ contextBridge.exposeInMainWorld('versions', {
   node: () => process.versions.node,
   chrome: () => process.versions.chrome,
   electron: () => process.versions.electron,
+  appversion: () => version,
+  appname: () => productName,
+
   // ping: () => ipcRenderer.invoke('ping'),
   // we can also expose variables, not just functions
 });

@@ -1,8 +1,23 @@
 // Modules
-const { Menu, shell } = require('electron');
+const { Menu, shell, BrowserWindow } = require('electron');
 
 // Booleans
 const isMac = process.platform === 'darwin';
+
+// Create 'About' window
+const createAboutWindow = () => {
+  console.log('In About Window');
+  aboutWindow = new BrowserWindow({
+    title: 'About Password Generator',
+    x: 150,
+    y: 150,
+    width: 300,
+    height: 300,
+  });
+
+  // aboutWindow.loadFile(path.join(__dirname, './renderer/about.html'));
+  aboutWindow.loadFile('renderer/about.html');
+};
 
 // Module function to create main app menu
 // Menu template
@@ -17,6 +32,13 @@ module.exports = () => {
     },
     {
       role: 'windowMenu',
+    },
+    {
+      label: 'Actions',
+      submenu: [
+        { label: 'DevTools', role: 'toggleDevTools' },
+        { role: 'ToggleFullScreen' },
+      ],
     },
     {
       role: 'help',
@@ -42,7 +64,7 @@ module.exports = () => {
                 submenu: [
                   {
                     label: About,
-                    // click: createAboutWindow,
+                    click: createAboutWindow,
                   },
                 ],
               },
@@ -54,20 +76,13 @@ module.exports = () => {
         ...(!isMac
           ? [
               {
-                label: 'About',
-                // click: createAboutWindow,
+                label: 'About this application',
+                click: createAboutWindow,
               },
             ]
           : []),
       ],
     },
-    // {
-    //   label: 'Actions',
-    //   submenu: [
-    //     { label: 'DevTools', role: 'toggleDevTools' },
-    //     { role: 'ToggleFullScreen' },
-    //   ],
-    // },
   ];
 
   // Create Mac app Menu

@@ -1,5 +1,5 @@
 {
-  "name": "dvm-passgen-app",
+  "name": "passgen-app",
   "productName": "Password Generator",
   "version": "1.0.0",
   "description": "password generator desktop app",

@@ -15,7 +15,7 @@ button.addEventListener('click', (e) => {
   let numbers = num.checked;
 
   symbols = customSymbols.value;
- 
+
   // console.log(length, numbers, symbols);
 
   // Get Generated Password
@@ -27,7 +27,7 @@ button.addEventListener('click', (e) => {
 });
 
 const information = document.getElementById('info');
-information.innerText = `This app is using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`;
+information.innerText = `This ${versions.appname()} (v${versions.appversion()}) is  using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`;
 
 // const func = async () => {
 //   const response = await window.versions.ping();
