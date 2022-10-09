@@ -9,14 +9,20 @@ body {
   background: rgb(90, 144, 199);
   background-size: auto;
   background-repeat: no-repeat;
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
+  color: rgb(26, 23, 23);
+}
+
+body#about {
+  background: beige;
+  font-size: 0.75rem;
 }
 
 header {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  /* color: white; */
 }
 
 h1 {
@@ -33,7 +39,7 @@ main {
   font-size: 1.2rem;
   font-weight: bold;
   margin-top: 4rem;
-  padding: 2rem;
+  /* padding: 2rem; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,6 +55,8 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: start;
+  padding: 0 0.5rem;
+  margin: 1rem;
 }
 
 input,
@@ -99,9 +107,14 @@ button#clear-button:focus {
   color: pink;
 }
 
+p {
+  font-size: 0.8rem;
+}
+
 footer {
-  color: #fff;
+  color: rgb(39, 30, 30);
+  font-size: 1rem;
   position: absolute;
-  bottom: 1rem;
+  bottom: 0.5rem;
   left: 0.5rem;
 }

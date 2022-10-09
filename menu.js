@@ -1,18 +1,27 @@
 // Modules
 const { Menu, shell, BrowserWindow } = require('electron');
 
+// include the Node.js 'path' module
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
+
 // Booleans
 const isMac = process.platform === 'darwin';
 
 // Create 'About' window
 const createAboutWindow = () => {
-  console.log('In About Window');
   aboutWindow = new BrowserWindow({
     title: 'About Password Generator',
     x: 150,
     y: 150,
-    width: 300,
-    height: 300,
+    width: 400,
+    height: 400,
+    webPreferences: {
+      contextIsolation: true,
+      nodeIntegration: true,
+      preload: path.join(__dirname, 'preload.js'),
+    },
   });
 
   // aboutWindow.loadFile(path.join(__dirname, './renderer/about.html'));
@@ -76,7 +85,7 @@ module.exports = () => {
         ...(!isMac
           ? [
               {
-                label: 'About this application',
+                label: 'About Password Generator',
                 click: createAboutWindow,
               },
             ]

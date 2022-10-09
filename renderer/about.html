@@ -5,23 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="main.css" />
 
     <title>Password Generator</title>
   </head>
-  <body>
-    <p>Password Generator</p>
-    <p>
-      Develop by David Macisso and inspired by Brad Travesy, Travesy Media on
-      Youtube video
-    </p>
-    <div id="info"></div>
-    <footer style="color: red">
-      <!-- <p id="info"></p> -->
+  <body id="about">
+    <header>
+      <h1>Password Generator</h1>
+    </header>
+
+    <footer>
+      <p id="info"></p>
+      <hr />
+      <p>
+        Develop by David Macisso and inspired by Brad Traversy, Traversy Media
+        on Youtube video and Ray Viljoen Master Electron course on Udemy
+      </p>
     </footer>
-    <script>
-      const information = document.getElementById('info');
-      information.innerText = `This ${versions.appname()} (v${versions.appversion()}) is  using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`;
-    </script>
+    <script src="versions.js"></script>
   </body>
 </html>

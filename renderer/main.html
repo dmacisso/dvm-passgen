@@ -7,7 +7,13 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
     /> -->
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="main.css" />
     <title>Password Generator</title>
   </head>
@@ -33,9 +39,14 @@
           </div> -->
           <div>
             <label for="customSymbols">Enter Symbols</label>
-            <input value="!@#$%^&*_-+=" type="text" name="customSymbols" id="customSymbols" />
+            <input
+              value="!@#$%^&*_-+="
+              type="text"
+              name="customSymbols"
+              id="customSymbols"
+            />
           </div>
-          
+
           <!-- <div>
             <label for="clipboard">Save to Clipboard and File?</label>
             <input type="checkbox" name="clipboard" id="clipboard" />

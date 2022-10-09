@@ -1,5 +1,8 @@
+const { encrypt, decrypt } = require('./crypto');
 const fs = require('fs');
 const os = require('os');
+require('dotenv').config();
+
 
 const { version, productName } = require('./package.json');
 console.log(productName, version);
@@ -48,6 +51,9 @@ const createWindow = () => {
   // ipcMain.handle('ping', () => 'pong');
   ipcMain.on('passwd', (e, generatedPassword) => {
     console.log(generatedPassword);
+
+    const encryptedPassword = encrypt(generatedPassword);
+    console.log(encryptedPassword);
 
     // copy password to clipboard
     clipboard.writeText(generatedPassword);

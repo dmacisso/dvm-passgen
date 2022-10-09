@@ -6,7 +6,6 @@ const len = document.getElementById('len'),
   customSymbols = document.getElementById('customSymbols');
 export let symbols = customSymbols.value;
 
-const clip = document.getElementById('clipboard');
 const button = document.getElementById('submit-button');
 
 button.addEventListener('click', (e) => {
@@ -20,6 +19,7 @@ button.addEventListener('click', (e) => {
 
   // Get Generated Password
   const generatedPassword = createPassword(length, numbers, symbols);
+  
 
   ipcRenderer.send('passwd', generatedPassword);
 
@@ -27,7 +27,7 @@ button.addEventListener('click', (e) => {
 });
 
 const information = document.getElementById('info');
-information.innerText = `This ${versions.appname()} (v${versions.appversion()}) is  using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`;
+information.innerText = `${versions.appname()} (v${versions.appversion()}) is  using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`;
 
 // const func = async () => {
 //   const response = await window.versions.ping();
