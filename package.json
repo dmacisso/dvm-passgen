@@ -7,8 +7,9 @@
   "scripts": {
     "start": "electron .",
     "forge": "electron-forge start",
-    "build": "electron-builder --help",
-    "watch": "nodemon --exec electron ."
+    "build": "electron-builder -w",
+    "watch": "nodemon --exec electron .",
+    "win-cert": "electron-builder create-self-signed-cert -p dvm-eip"
   },
   "repository": {
     "type": "git",
@@ -46,7 +47,10 @@
       "category": "public.app-category.productivity"
     },
     "win": {
-      "target": "zip"
+      "certificateFile": "private/dvm-eip.pfx",
+      "certificatePassword": "",
+      "publisherName": "dvm-eip",
+      "icon": "build/icons8-application-256.ico"
     },
     "linux": {
       "category": "utility"
