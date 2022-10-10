@@ -5,7 +5,7 @@ const { version, productName } = require('./package.json');
 const Toastify = require('toastify-js');
 
 // Modules
-const { contextBridge, ipcRenderer } = require('electron');
+const { contextBridge, ipcRenderer, ipcMain } = require('electron');
 
 contextBridge.exposeInMainWorld('versions', {
   node: () => process.versions.node,

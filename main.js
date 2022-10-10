@@ -46,6 +46,15 @@ const createWindow = () => {
   // Open DevTools - Remove for PRODUCTION!
   // win.webContents.openDevTools({ mode: 'detach' });
 
+  // Create destination folder if not exists
+    const dest = path.join(app.getPath('home'), '/generated_passwords');
+    const filename = 'passwords.txt';
+    if (!fs.existsSync(dest)) {
+      fs.mkdirSync(dest);
+    }
+
+  
+
   // ipcMain.handle('ping', () => 'pong');
   ipcMain.on('passwd', (e, generatedPassword) => {
     console.log(generatedPassword);
@@ -56,27 +65,22 @@ const createWindow = () => {
     // copy password to clipboard
     clipboard.writeText(generatedPassword);
 
-    // Create destination folder if not exists
-    // const dest = path.join(os.homedir(), '/generated_passwords');
-    const dest = path.join(app.getPath('home'), '/generated_passwords');
-    const filename = 'passwords.txt';
-    if (!fs.existsSync(dest)) {
-      fs.mkdirSync(dest);
-    }
+    
     // save file to password.txt and alert success
 
     fs.open(path.join(dest, filename), 'a', 666, (e, id) => {
       fs.write(id, generatedPassword + os.EOL, null, 'utf-8', () => {
         fs.close(id, () => {
-          console.log(`Password saved to ${dest}\\password.txt`);
-          const success = `Password saved to ${dest}\\password.txt`;
-          // ipcMain.send('success', success);
-          // alertSuccess(`Password saved to ${dest}\\password.txt`);
+          console.log(`Password saved to ${dest}\\passwords.txt`);
+          // const success = `Password saved to ${dest}\\password.txt`;
+          const success = `Password saved to clipboard`;
+           win.webContents.send('success', success  );
           shell.openPath(dest);
         });
       });
     });
   });
+
 
   // Create main app Menu
   // appMenu(win.webContents);

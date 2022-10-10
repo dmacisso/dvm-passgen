@@ -29,7 +29,7 @@ const information = document.getElementById('info');
 information.innerText = `${versions.appname()} (v${versions.appversion()}) is  using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`;
 
 function alertError(message) {
-  Toastify({
+  Toastify.toast({
     text: message,
     duration: 5000,
     close: false,
@@ -42,7 +42,7 @@ function alertError(message) {
 }
 
 function alertSuccess(message) {
-  Toastify({
+  Toastify.toast({
     text: message,
     duration: 5000,
     close: false,
@@ -54,8 +54,9 @@ function alertSuccess(message) {
   });
 }
 
-ipcRenderer.on('success', () => {
-  alert('Success');
+ipcRenderer.on('success', (message) => {
+  // console.log(message)
+  alertSuccess(message);
 });
 
 // const func = async () => {
