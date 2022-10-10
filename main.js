@@ -2,6 +2,7 @@ const { encrypt, decrypt } = require('./crypto');
 const fs = require('fs');
 const os = require('os');
 require('dotenv').config();
+require('update-electron-app')();
 
 const { version, productName } = require('./package.json');
 
@@ -47,13 +48,11 @@ const createWindow = () => {
   // win.webContents.openDevTools({ mode: 'detach' });
 
   // Create destination folder if not exists
-    const dest = path.join(app.getPath('home'), '/generated_passwords');
-    const filename = 'passwords.txt';
-    if (!fs.existsSync(dest)) {
-      fs.mkdirSync(dest);
-    }
-
-  
+  const dest = path.join(app.getPath('home'), '/generated_passwords');
+  const filename = 'passwords.txt';
+  if (!fs.existsSync(dest)) {
+    fs.mkdirSync(dest);
+  }
 
   // ipcMain.handle('ping', () => 'pong');
   ipcMain.on('passwd', (e, generatedPassword) => {
@@ -65,7 +64,6 @@ const createWindow = () => {
     // copy password to clipboard
     clipboard.writeText(generatedPassword);
 
-    
     // save file to password.txt and alert success
 
     fs.open(path.join(dest, filename), 'a', 666, (e, id) => {
@@ -74,13 +72,12 @@ const createWindow = () => {
           console.log(`Password saved to ${dest}\\passwords.txt`);
           // const success = `Password saved to ${dest}\\password.txt`;
           const success = `Password saved to clipboard`;
-           win.webContents.send('success', success  );
+          win.webContents.send('success', success);
           shell.openPath(dest);
         });
       });
     });
   });
-
 
   // Create main app Menu
   // appMenu(win.webContents);

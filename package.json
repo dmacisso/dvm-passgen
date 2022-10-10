@@ -35,7 +35,8 @@
     "dotenv": "^16.0.3",
     "electron-squirrel-startup": "^1.0.0",
     "electron-window-state": "^5.0.3",
-    "toastify-js": "^1.12.0"
+    "toastify-js": "^1.12.0",
+    "update-electron-app": "^2.0.1"
   },
   "build": {
     "appId": "com.dvmacisso.dvm-passgen",

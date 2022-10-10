@@ -17,12 +17,15 @@ const createAboutWindow = () => {
     y: 150,
     width: 400,
     height: 400,
+    menu: false,
+    autoHideMenuBar: true,
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js'),
     },
   });
+
 
   // aboutWindow.loadFile(path.join(__dirname, './renderer/about.html'));
   aboutWindow.loadFile('renderer/about.html');
