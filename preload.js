@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const { version, productName } = require('./package.json');
+const Toastify = require('toastify-js');
 
 // Modules
 const { contextBridge, ipcRenderer } = require('electron');
@@ -19,6 +20,10 @@ contextBridge.exposeInMainWorld('versions', {
 
 contextBridge.exposeInMainWorld('os', {
   homedir: () => os.homedir(),
+});
+
+contextBridge.exposeInMainWorld('Toastify', {
+  toast: (options) => Toastify(options).showToast(),
 });
 
 contextBridge.exposeInMainWorld('fs', {

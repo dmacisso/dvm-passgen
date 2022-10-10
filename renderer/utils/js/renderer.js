@@ -1,4 +1,4 @@
-import { createPassword } from './utils/createPassword.js';
+import { createPassword } from './createPassword.js';
 
 const len = document.getElementById('len'),
   pass = document.getElementById('password'),
@@ -19,7 +19,6 @@ button.addEventListener('click', (e) => {
 
   // Get Generated Password
   const generatedPassword = createPassword(length, numbers, symbols);
-  
 
   ipcRenderer.send('passwd', generatedPassword);
 
@@ -28,6 +27,36 @@ button.addEventListener('click', (e) => {
 
 const information = document.getElementById('info');
 information.innerText = `${versions.appname()} (v${versions.appversion()}) is  using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`;
+
+function alertError(message) {
+  Toastify({
+    text: message,
+    duration: 5000,
+    close: false,
+    style: {
+      background: 'red',
+      color: 'white',
+      textAlign: 'center',
+    },
+  });
+}
+
+function alertSuccess(message) {
+  Toastify({
+    text: message,
+    duration: 5000,
+    close: false,
+    style: {
+      background: 'green',
+      color: 'white',
+      textAlign: 'center',
+    },
+  });
+}
+
+ipcRenderer.on('success', () => {
+  alert('Success');
+});
 
 // const func = async () => {
 //   const response = await window.versions.ping();

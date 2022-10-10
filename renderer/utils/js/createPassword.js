@@ -1,4 +1,4 @@
-import { symbols } from '../app.js';
+import { symbols } from './renderer.js';
 
 const alpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const numbers = '0123456789';

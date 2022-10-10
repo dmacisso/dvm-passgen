@@ -13,11 +13,6 @@ body {
   color: rgb(26, 23, 23);
 }
 
-body#about {
-  background: beige;
-  font-size: 0.75rem;
-}
-
 header {
   display: flex;
   justify-content: center;
@@ -117,4 +112,17 @@ footer {
   position: absolute;
   bottom: 0.5rem;
   left: 0.5rem;
+}
+
+/* About Page */
+body#about {
+  background: beige;
+  font-size: 0.75rem;
+  padding: 1rem;
+}
+
+p#logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
