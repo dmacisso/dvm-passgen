@@ -2,7 +2,9 @@ const { encrypt, decrypt } = require('./crypto');
 const fs = require('fs');
 const os = require('os');
 require('dotenv').config();
-require('update-electron-app')();
+// require('update-electron-app')();
+const updater = require('./updater');
+
 
 const { version, productName } = require('./package.json');
 
@@ -12,7 +14,7 @@ const windowStateKeeper = require('electron-window-state');
 const appMenu = require('./menu');
 
 // Booleans
-const isDev = process.env.NODE_ENV !== 'production';
+const isDev = process.env.NODE_ENV === 'production';
 
 // include the Node.js 'path' module
 const path = require('path');
@@ -24,6 +26,10 @@ let win;
 
 // Create a new BrowserWindow when `app` is ready
 const createWindow = () => {
+
+  // Check for update after 1.5 seconds.
+  setTimeout(updater, 1500);
+
   // win state keeper
   let state = windowStateKeeper({ defaultWidth: 400, defaultHeight: 500 });
   win = new BrowserWindow({
